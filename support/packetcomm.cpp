@@ -122,7 +122,7 @@ namespace Cosmos {
             {
                 wrapped = packetized;
             }
-            return Unwrap(checkcrc);
+            return (Unwrap(checkcrc) >= 0);
         }
 
         int32_t PacketComm::RawUnPacketize(bool invert, bool checkcrc, bool minimal_header)
@@ -135,7 +135,7 @@ namespace Cosmos {
             {
                 wrapped = packetized;
             }
-            return Unwrap(checkcrc, minimal_header);
+            return (Unwrap(checkcrc, minimal_header) >= 0);
         }
 
         bool PacketComm::SLIPUnPacketize(bool checkcrc)
@@ -145,7 +145,7 @@ namespace Cosmos {
             {
                 return false;
             }
-            return Unwrap(checkcrc);
+            return (Unwrap(checkcrc) >= 0);
         }
 
         bool PacketComm::ASMUnPacketize()
@@ -194,7 +194,7 @@ namespace Cosmos {
             Ax25Handle axhandle;
             axhandle.unstuff(packetized);
             wrapped = axhandle.ax25_packet;
-            return Unwrap(checkcrc);
+            return (Unwrap(checkcrc) >= 0);
         }
 
         bool PacketComm::AX25UnPacketize(bool checkcrc)
@@ -206,7 +206,7 @@ namespace Cosmos {
             if (iretn >= 0)
             {
                 wrapped = axhandle.ax25_packet;
-                return Unwrap(checkcrc);
+                return (Unwrap(checkcrc) >= 0);
             }
             else
             {
